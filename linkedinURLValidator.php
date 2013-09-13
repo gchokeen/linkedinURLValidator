@@ -24,9 +24,11 @@ class linkedinURLValidator{
 	
 
 	public function validate(){
-
-		if($this->is_person()){
-			return array('valide'=>true,'type'=>'person');
+		
+		$is_customized = $this->is_customized();
+		
+		if($this->is_person() ||  $is_customized){
+			return array('valide'=>true,'type'=>'person','customized'=>$is_customized);
 		}
 		else if($this->is_company()){
 			
@@ -63,12 +65,12 @@ class linkedinURLValidator{
 		
 		preg_match($this->pattern, $this->url, $this->result);
 		
-		return $this->result;		
+		
+		return (count($this->result)==0?0:1);		
 		
 	}
 		
 }
-
 
 
 ?>
