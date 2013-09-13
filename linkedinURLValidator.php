@@ -26,14 +26,14 @@ class linkedinURLValidator{
 	public function validate(){
 
 		if($this->is_person()){
-			return array(true,'person');
+			return array('valide'=>true,'type'=>'person');
 		}
 		else if($this->is_company()){
 			
-			return array(true,'company');
+			return array('valide'=>true,'type'=>'company');
 		}
 		else{
-			return array(false);
+			return array('valide'=>false);
 		}
 		
 	}
@@ -44,13 +44,26 @@ class linkedinURLValidator{
 		
 		preg_match($this->pattern, $this->url, $this->result);
 		
-
 		return $this->result;
 	}
 	
 	public function is_company(){
 		
+		$this->pattern = '/((http?|https)\:\/\/)?www.linkedin.com\/company\//i';
 		
+		preg_match($this->pattern, $this->url, $this->result);
+		
+		return $this->result;		
+		
+	}
+	
+	public function is_customized(){
+
+		$this->pattern = '/((http?|https)\:\/\/)?www.linkedin.com\/pub\//i';
+		
+		preg_match($this->pattern, $this->url, $this->result);
+		
+		return $this->result;		
 		
 	}
 		
