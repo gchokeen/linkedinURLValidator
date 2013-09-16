@@ -66,7 +66,7 @@ class linkedinURLValidator{
 		preg_match($this->pattern, $this->url, $this->result);
 		
 		
-		return (count($this->result)==0?0:1);		
+		return (count($this->result)!=0?0:1);		
 		
 	}
 		
