@@ -25,14 +25,21 @@ class linkedinURLValidator{
 
 	public function validate(){
 		
-		$is_customized = $this->is_customized();
-		
-		if($this->is_person() ||  $is_customized){
-			return array('valide'=>true,'type'=>'person','customized'=>$is_customized);
-		}
-		else if($this->is_company()){
+		if($this->is_url($this->url)){
 			
-			return array('valide'=>true,'type'=>'company');
+			$is_customized = $this->is_customized();
+			
+			if($this->is_person() ||  $is_customized){
+				return array('valide'=>true,'type'=>'person','customized'=>$is_customized);
+			}
+			else if($this->is_company()){
+				
+				return array('valide'=>true,'type'=>'company');
+			}
+			else{
+				return array('valide'=>false);
+			}
+			
 		}
 		else{
 			return array('valide'=>false);
@@ -59,6 +66,9 @@ class linkedinURLValidator{
 		
 	}
 	
+	/*
+	 * @return: 0-not customized, 1 - customized
+	*/	
 	public function is_customized(){
 
 		$this->pattern = '/((http?|https)\:\/\/)?www.linkedin.com\/pub\//i';
@@ -69,6 +79,16 @@ class linkedinURLValidator{
 		return (count($this->result)!=0?0:1);		
 		
 	}
+	
+	private function is_url($url){
+	
+		if(filter_var($url, FILTER_VALIDATE_URL) === FALSE)
+		{
+			return false;
+		}else{
+			return true;
+		}
+	}	
 		
 }
 
