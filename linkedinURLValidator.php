@@ -29,6 +29,7 @@ class linkedinURLValidator{
 			
 			$is_customized = $this->is_customized();
 			
+			
 			if($this->is_person() ||  $is_customized){
 				return array('valid'=>true,'type'=>'person','customized'=>$is_customized);
 			}
@@ -58,13 +59,14 @@ class linkedinURLValidator{
 	
 	public function is_company(){
 		
-		$this->pattern = '/((http?|https)\:\/\/)?www.linkedin.com\/company\//i';
+		$this->pattern = '/((http?|https)\:\/\/)?www.linkedin.com\/company\/[a-zA-Z0-9]{5,30}/i';
 		
 		preg_match($this->pattern, $this->url, $this->result);
-		
+
 		return $this->result;		
 		
 	}
+	
 	
 	/*
 	 * @return: 0-not customized, 1 - customized
@@ -75,8 +77,7 @@ class linkedinURLValidator{
 		
 		preg_match($this->pattern, $this->url, $this->result);
 		
-		
-		return (count($this->result)!=0?0:1);		
+		return (count($this->result)==0?0:1);		
 		
 	}
 	
