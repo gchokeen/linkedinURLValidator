@@ -68,6 +68,19 @@ class linkedinURLValidator{
 	}
 	
 	
+	public function  get_company_id(){
+		if($result=$this->is_company()){
+			
+			return $lastSegment = basename(parse_url($result[0], PHP_URL_PATH));
+			
+		}
+		else{
+			return false;
+		}
+	}
+	
+	
+	
 	/*
 	 * @return: 0-not customized, 1 - customized
 	*/	
