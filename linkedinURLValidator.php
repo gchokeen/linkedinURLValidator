@@ -30,19 +30,19 @@ class linkedinURLValidator{
 			$is_customized = $this->is_customized();
 			
 			if($this->is_person() ||  $is_customized){
-				return array('valide'=>true,'type'=>'person','customized'=>$is_customized);
+				return array('valid'=>true,'type'=>'person','customized'=>$is_customized);
 			}
 			else if($this->is_company()){
 				
-				return array('valide'=>true,'type'=>'company');
+				return array('valid'=>true,'type'=>'company');
 			}
 			else{
-				return array('valide'=>false);
+				return array('valid'=>false);
 			}
 			
 		}
 		else{
-			return array('valide'=>false);
+			return array('valid'=>false);
 		}
 		
 	}
