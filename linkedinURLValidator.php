@@ -31,26 +31,26 @@ class linkedinURLValidator{
 			
 			
 			if($this->is_person() ||  $is_customized){
-				return array('valid'=>true,'type'=>'person','customized'=>$is_customized);
+				return array('valid'=>1,'type'=>'person','customized'=>$is_customized);
 			}
 			else if($this->is_company()){
 				
-				return array('valid'=>true,'type'=>'company');
+				return array('valid'=>1,'type'=>'company');
 			}
 			else{
-				return array('valid'=>false);
+				return array('valid'=>0);
 			}
 			
 		}
 		else{
-			return array('valid'=>false);
+			return array('valid'=>0,'error'=>'This is not a valid url');
 		}
 		
 	}
 	
 	public function is_person(){
 		
-		$this->pattern = '/((http?|https)\:\/\/)?www.linkedin.com\/[a-z]{2}\/[a-zA-Z0-9]{5,30}/i';
+		$this->pattern = '/((http?|https)\:\/\/)?([a-zA-Z]+)\.linkedin.com\/[a-z]{2}\/[a-zA-Z0-9]{5,30}/i';
 		
 		preg_match($this->pattern, $this->url, $this->result);
 		
@@ -59,7 +59,7 @@ class linkedinURLValidator{
 	
 	public function is_company(){
 		
-		$this->pattern = '/((http?|https)\:\/\/)?www.linkedin.com\/company\/[a-zA-Z0-9]{5,30}/i';
+		$this->pattern = '/((http?|https)\:\/\/)?([a-zA-Z]+)\.linkedin.com\/company\/[a-zA-Z0-9]{5,30}/i';
 		
 		preg_match($this->pattern, $this->url, $this->result);
 
@@ -86,7 +86,7 @@ class linkedinURLValidator{
 	*/	
 	public function is_customized(){
 
-		$this->pattern = '/((http?|https)\:\/\/)?www.linkedin.com\/pub\//i';
+		$this->pattern = '/((http?|https)\:\/\/)?([a-zA-Z]+)\.linkedin.com\/pub\//i';
 		
 		preg_match($this->pattern, $this->url, $this->result);
 		
