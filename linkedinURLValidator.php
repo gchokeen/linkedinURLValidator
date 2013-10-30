@@ -102,8 +102,21 @@ class linkedinURLValidator{
 		}else{
 			return true;
 		}
-	}	
+	}
+	
+	/*
+	 *convert_global_url method will convert the linkedin public url with www
+	 *@method : convert_global_url
+	 *
+	 */
+	public function convert_global_url(){
+
+		$this->pattern = '#(https?://)?\w+\.linkedin.com(?=[/\s]|$)#i';
 		
+		$this->result = preg_replace($this->pattern,'http://www.linkedin.com', $this->url);
+		
+		return $this->result;	
+	}
 }
 
 
