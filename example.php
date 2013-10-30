@@ -1,13 +1,5 @@
-linkedinURLValidator
-====================
+<?php 
 
-linkedinURLValidator class is used to validate the linkedin public url.
-
-
-##How to use
-
-
-```
 
 require_once 'linkedinURLValidator.php';
 
@@ -19,9 +11,9 @@ $result = $validator->validate();
 
 
 if($result['valid'] && $result['type'] == 'company'){
-	
-	echo 'Url is valid linkedin company url ';
-	echo $validator->get_company_id();
+
+    echo 'Url is valid linkedin company url ';
+    echo $validator->get_company_id();
 }
 else if($result['valid']){
 
@@ -32,4 +24,3 @@ else{
 }
 
 
-```
