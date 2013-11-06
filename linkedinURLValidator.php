@@ -27,13 +27,15 @@ class linkedinURLValidator{
 		
 		if($this->is_url($this->url)){
 			
-			$is_customized = $this->is_customized();
 			
-			
-			if($this->is_person() ||  $is_customized){
+			$companycheck = $this->is_company();			
+			$personcheck = $this->is_person();
+
+			if(count($personcheck) != 0){
+				$is_customized = $this->is_customized();
 				return array('valid'=>1,'type'=>'person','customized'=>$is_customized);
 			}
-			else if($this->is_company()){
+			else if(count($companycheck) != 0){
 				
 				return array('valid'=>1,'type'=>'company');
 			}
